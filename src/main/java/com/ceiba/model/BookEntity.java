@@ -51,6 +51,7 @@ public class BookEntity {
 	 */
 	@Column(name = "number_loans", nullable = true)
 	private Long numberLoans;
+
 	
 	
 

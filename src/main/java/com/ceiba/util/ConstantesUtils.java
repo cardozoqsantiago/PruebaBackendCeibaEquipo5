@@ -47,5 +47,10 @@ public class ConstantesUtils {
      * Valor maximo de la suma de los digitos del isbn
      */
     public static final Long VALOR_MAXIMO_DIG_ISBN = 30l;
+    
+    /**
+     * dias maximos de prestamo
+     */
+    public static final Long DIAS_MAXIMO_PRESTAMO = 15L;
 
 }

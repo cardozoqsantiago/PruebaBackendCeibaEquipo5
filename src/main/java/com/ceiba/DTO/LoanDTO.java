@@ -16,4 +16,7 @@ public class LoanDTO {
     private LocalDate returnDate;
     private boolean isLoan;
     private String personName;
+    private Long diasPrestamo;
+    
+    
 }
