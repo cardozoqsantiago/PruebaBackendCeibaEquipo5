@@ -21,7 +21,7 @@ public class ConstantesUtils {
     /**
      * Constante para la consulta de libros
      */
-    public static final String GET_BOOKS = "/books/{isbn}";
+    public static final String GET_BOOKS = "/books";
     /**
      * Constante para el no registro de un usuario
      */

@@ -6,14 +6,12 @@ import java.util.List;
 
 /**
  * Interface para el negocio BookService
- * 
- * @author Santiago Cardozo Q
  *
+ * @author Santiago Cardozo Q
+ * @author Nicolas Jaramillo S
  */
 public interface IBookService {
 
-    BookDTO findBookByISBN (String ISBN);
-
-    List<BookDTO> findAllBooks(String ISBN );
+    List<BookDTO> findAllBooks();
 
 }
