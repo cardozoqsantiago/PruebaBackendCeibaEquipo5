@@ -29,5 +29,10 @@ public class ConstantesUtils {
      * Nombre del error tecnico
      */
     public static final String EXITOSO = "EXITOSO";
+    
+    /**
+     * Valor maximo de la suma de los digitos del isbn
+     */
+    public static final Long VALOR_MAXIMO_DIG_ISBN = 30l;
 
 }
