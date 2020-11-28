@@ -12,12 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * Modelo para la tabla Loan
  * 
  * @author Santiago Cardozo Q
  *
  */
+@Data
 @Entity
 @Table(name = "Loan")
 public class LoanEntity {
