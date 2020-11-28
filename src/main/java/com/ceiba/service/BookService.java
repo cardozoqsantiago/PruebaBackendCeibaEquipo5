@@ -3,12 +3,14 @@ package com.ceiba.service;
 
 import com.ceiba.DTO.BookDTO;
 import com.ceiba.dao.IBookRepository;
+import com.ceiba.dao.ILoanRepository;
 import com.ceiba.model.BookEntity;
 import com.ceiba.util.BibliotecaMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import javax.transaction.SystemException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,9 +24,11 @@ import java.util.List;
 @Component
 public class BookService implements IBookService {
     private IBookRepository iBookRepository;
+    private ILoanRepository iLoanRepository;
 
-    public BookService(IBookRepository iBookRepository) {
+    public BookService(IBookRepository iBookRepository, ILoanRepository iLoanRepository) {
         this.iBookRepository = iBookRepository;
+        this.iLoanRepository = iLoanRepository;
     }
 
     /**
@@ -36,7 +40,17 @@ public class BookService implements IBookService {
     @Override
     public List<BookDTO> findAllBooks() throws SystemException {
         try {
-            return BibliotecaMapper.toListBook(iBookRepository.findAll());
+            List<BookDTO> listBooks = BibliotecaMapper.toListBook(iBookRepository.findAll());
+            List<BookDTO> responseList = new ArrayList<>();
+            for (BookDTO book : listBooks) {
+                if (book.getNumberLoans() > 0) {
+                    book.setLoan(BibliotecaMapper.toListLoan(iLoanRepository.findAllLoanByIdBook(book.getId())));
+                    responseList.add(book);
+                } else {
+                    responseList.add(book);
+                }
+            }
+            return responseList;
         } catch (Exception e) {
             throw new SystemException();
         }
@@ -63,7 +77,7 @@ public class BookService implements IBookService {
                     iBookRepository.delete(book);
                     response = "el libro fue borrado";
 
-                } else if (book.getNumberLoans() > 0 && book.getNumberBooks() == 1) {
+                } else if (book.getNumberLoans() > 0 && book.getNumberBooks() == 0) {
                     response = "el libro esta prestado";
 
                 }
