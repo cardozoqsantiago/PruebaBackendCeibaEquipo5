@@ -19,6 +19,10 @@ public class ConstantesUtils {
      */
     public static final String BASE_URL_LOAN = "/loan";
     /**
+     * Constante para la consulta de libros
+     */
+    public static final String GET_BOOKS = "/books/{isbn}";
+    /**
      * Constante para el no registro de un usuario
      */
     public static final String NO_CREO_USUARIO = "No se creo el libro correctamente";

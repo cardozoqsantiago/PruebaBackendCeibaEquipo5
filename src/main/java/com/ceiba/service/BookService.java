@@ -1,18 +1,30 @@
 package com.ceiba.service;
 
 
-import org.springframework.stereotype.Service;
+import com.ceiba.DTO.BookDTO;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 /**
- * Servicio que maneja toda la logica de negocio 
+ * Servicio que maneja toda la logica de negocio
  * necesaria para un libro
- * 
- * @author Santiago Cardozo Q
  *
+ * @author Santiago Cardozo Q
+ * @author Nicolas Jaramillo S
  */
-@Service
+@Component
 public class BookService implements IBookService {
-	
 
+
+    @Override
+    public BookDTO findBookByISBN(String ISBN) {
+        return null;
+    }
+
+    @Override
+    public List<BookDTO> findAllBooks(String ISBN) {
+        return null;
+    }
 }
