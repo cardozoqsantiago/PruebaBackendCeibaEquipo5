@@ -50,6 +50,13 @@
 			<artifactId>modelmapper-spring</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<!-- lombok dependence-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- fin lombok dependence-->
 	</dependencies>
 
 	<build>

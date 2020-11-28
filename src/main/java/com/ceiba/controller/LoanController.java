@@ -1,5 +1,6 @@
 package com.ceiba.controller;
 
+import com.ceiba.util.ConstantesUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,10 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
  * prestamo
  * 
  * @author Santiago Cardozo Q
+ * @author Nicolas Jaramillo S
  *
  */
 @RestController
-@RequestMapping("/loan")
+@RequestMapping(ConstantesUtils.BASE_URL_LOAN)
 public class LoanController {
 
 }
