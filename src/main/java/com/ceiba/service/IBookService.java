@@ -2,6 +2,7 @@ package com.ceiba.service;
 
 import com.ceiba.DTO.BookDTO;
 
+import javax.transaction.SystemException;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ import java.util.List;
  */
 public interface IBookService {
 
-    List<BookDTO> findAllBooks();
+    List<BookDTO> findAllBooks() throws SystemException;
+
+    String deleteBook(String isbn) throws SystemException;
 
 }

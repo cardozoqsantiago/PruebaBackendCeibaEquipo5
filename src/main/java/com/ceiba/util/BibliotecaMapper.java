@@ -9,6 +9,9 @@ import com.ceiba.model.BookEntity;
 import com.ceiba.model.LoanEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase que se encarga de mapear entidades a Dtos y viceversa
  * 
@@ -17,6 +20,19 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BibliotecaMapper {
+
+	/**
+	 * metodo que convierte lista de entidades book a lista de book DTO
+	 * @param books
+	 * @return
+	 */
+	public static List<BookDTO> toListBook(List<BookEntity> books){
+		List<BookDTO> responseList = new ArrayList<>();
+		for (BookEntity book: books) {
+			responseList.add(toBookDTO(book));
+		}
+		return responseList;
+	}
 	
 	/**
 	 * Metodo que mapea un BookDTO a su respectiva entidad

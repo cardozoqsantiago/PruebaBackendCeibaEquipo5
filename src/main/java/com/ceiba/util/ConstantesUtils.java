@@ -23,6 +23,10 @@ public class ConstantesUtils {
      */
     public static final String GET_BOOKS = "/books";
     /**
+     * constante para eliminar libros
+     */
+    public static final String DELETE_BOOKS = "/book/remove/{isbn}";
+    /**
      * Constante para el no registro de un usuario
      */
     public static final String NO_CREO_USUARIO = "No se creo el libro correctamente";

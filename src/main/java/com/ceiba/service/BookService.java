@@ -6,7 +6,9 @@ import com.ceiba.dao.IBookRepository;
 import com.ceiba.model.BookEntity;
 import com.ceiba.util.BibliotecaMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
+import javax.transaction.SystemException;
 import java.util.List;
 
 
@@ -28,23 +30,61 @@ public class BookService implements IBookService {
     /**
      * metodo que consulta todos los libros prestados y sin prestar
      *
-     * @return lista de BookDTO
+     * @return list BookDTO
+     * @throws SystemException
      */
     @Override
-    public List<BookDTO> findAllBooks() {
-        BookEntity tableBook = iBookRepository.findAllBooks();
-        return null;
+    public List<BookDTO> findAllBooks() throws SystemException {
+        try {
+            return BibliotecaMapper.toListBook(iBookRepository.findAll());
+        } catch (Exception e) {
+            throw new SystemException();
+        }
     }
-    
+
+    /**
+     * eliminacion de los libros
+     *
+     * @param isbn
+     * @return estado de eliminacion
+     * @throws SystemException
+     */
+    @Override
+    public String deleteBook(String isbn) throws SystemException {
+        try {
+            String response = null;
+            BookEntity book = iBookRepository.findBook(isbn);
+            if (!ObjectUtils.isEmpty(book)) {
+                if (book.getNumberBooks() > 1) {
+                    book.setNumberBooks(book.getNumberBooks() - 1);
+                    iBookRepository.save(book);
+                    response = "el libro fue borrado";
+                } else if (book.getNumberBooks() == 1) {
+                    iBookRepository.delete(book);
+                    response = "el libro fue borrado";
+
+                } else if (book.getNumberLoans() > 0 && book.getNumberBooks() == 1) {
+                    response = "el libro esta prestado";
+
+                }
+                return response;
+            }
+            return "el libro no existe";
+        } catch (Exception e) {
+            throw new SystemException();
+        }
+    }
+
+
     /**
      * Metodo que permite crear un usuario
-     * 
+     *
      * @param bookDTO
      * @return
      */
     public void createBook(BookDTO bookDTO) {
-    	iBookRepository.save(BibliotecaMapper.toBookEntity(bookDTO));
+        iBookRepository.save(BibliotecaMapper.toBookEntity(bookDTO));
     }
-    
-    
+
+
 }
