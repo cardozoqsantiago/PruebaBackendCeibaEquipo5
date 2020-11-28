@@ -1,6 +1,5 @@
 package com.ceiba.DTO;
 
-import com.ceiba.model.BookEntity;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 @ToString
 public class LoanDTO {
     private Long id;
-    private BookEntity idBook;
+    private BookDTO idBook;
     private LocalDate date;
     private LocalDate returnDate;
     private boolean isLoan;
