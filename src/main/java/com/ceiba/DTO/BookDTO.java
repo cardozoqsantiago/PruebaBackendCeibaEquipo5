@@ -15,6 +15,7 @@ import lombok.*;
 @ToString
 public class BookDTO {
     private Long id;
+    private String isbn;
     private String name;
     private Long numberBooks;
     private Long numberLoans;
