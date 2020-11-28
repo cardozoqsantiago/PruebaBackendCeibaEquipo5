@@ -2,14 +2,17 @@ package com.ceiba.biblioteca.service;
 
 
 import com.ceiba.biblioteca.dao.IBookRepository;
+import com.ceiba.biblioteca.dao.ILoanRepository;
 import com.ceiba.biblioteca.dto.BookDTO;
 import com.ceiba.biblioteca.model.BookEntity;
 import com.ceiba.biblioteca.util.BibliotecaMapper;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import javax.transaction.SystemException;
 
 
 /**
@@ -21,23 +24,16 @@ import java.util.Optional;
  */
 @Component
 public class BookService implements IBookService {
-    private IBookRepository iBookRepository;
-
-    public BookService(IBookRepository iBookRepository) {
-        this.iBookRepository = iBookRepository;
-    }
-
-    /**
-     * metodo que consulta todos los libros prestados y sin prestar
-     *
-     * @return lista de BookDTO
-     */
-    @Override
-    public List<BookDTO> findAllBooks() {
-        BookEntity tableBook = iBookRepository.findAllBooks();
-        return null;
-    }
     
+	private IBookRepository iBookRepository;
+    
+	private ILoanRepository iLoanRepository;
+
+    public BookService(IBookRepository iBookRepository, ILoanRepository iLoanRepository) {
+        this.iBookRepository = iBookRepository;
+        this.iLoanRepository = iLoanRepository;
+    }
+ 
     /**
      * Metodo que permite crear un libro
      * 
@@ -76,5 +72,63 @@ public class BookService implements IBookService {
     	return new BookEntity();
     }
     
-    
+    /**
+     * eliminacion de los libros
+     *
+     * @param isbn
+     * @return estado de eliminacion
+     * @throws SystemException
+     */
+	@Override
+	public String deleteBook(String isbn) throws SystemException {
+		try {
+			String response = null;
+			BookEntity book = iBookRepository.findByIsbn(isbn);
+			if (!ObjectUtils.isEmpty(book)) {
+				if (book.getNumberBooks() > 1) {
+					book.setNumberBooks(book.getNumberBooks() - 1);
+					iBookRepository.save(book);
+					response = "el libro fue borrado";
+				} else if (book.getNumberBooks() == 1) {
+					iBookRepository.delete(book);
+					response = "el libro fue borrado";
+
+				} else if (book.getNumberLoans() > 0 && book.getNumberBooks() == 0) {
+					response = "el libro esta prestado";
+
+				}
+				return response;
+			}
+			return "el libro no existe";
+		} catch (Exception e) {
+			throw new SystemException();
+		}
+	}
+	
+	/**
+	 * metodo que consulta todos los libros prestados y sin prestar
+	 *
+	 * @return list BookDTO
+	 * @throws SystemException
+	 */
+	@Override
+	public List<BookDTO> findAllBooks() throws SystemException {
+		try {
+			List<BookDTO> listBooks = BibliotecaMapper.toListBook(iBookRepository.findAll());
+			List<BookDTO> responseList = new ArrayList<>();
+			for (BookDTO book : listBooks) {
+				if (book.getNumberLoans() > 0) {
+
+					book.setLoan(BibliotecaMapper.toListLoan(iLoanRepository.findAllLoanByIdBook(book.getId())));
+					responseList.add(book);
+				} else {
+					responseList.add(book);
+				}
+			}
+			return responseList;
+		} catch (Exception e) {
+			throw new SystemException();
+		}
+	}
+
 }
