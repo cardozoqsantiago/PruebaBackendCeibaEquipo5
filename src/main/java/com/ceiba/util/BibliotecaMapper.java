@@ -4,8 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
 import com.ceiba.DTO.BookDTO;
+import com.ceiba.DTO.LoanDTO;
 import com.ceiba.model.BookEntity;
 import com.ceiba.model.LoanEntity;
+import org.springframework.stereotype.Component;
 
 /**
  * Clase que se encarga de mapear entidades a Dtos y viceversa
@@ -13,6 +15,7 @@ import com.ceiba.model.LoanEntity;
  * @author Santiago Cardozo Q
  *
  */
+@Component
 public class BibliotecaMapper {
 	
 	/**

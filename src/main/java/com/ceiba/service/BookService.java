@@ -2,6 +2,9 @@ package com.ceiba.service;
 
 
 import com.ceiba.DTO.BookDTO;
+import com.ceiba.dao.IBookRepository;
+import com.ceiba.model.BookEntity;
+import com.ceiba.util.BibliotecaMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,15 +19,22 @@ import java.util.List;
  */
 @Component
 public class BookService implements IBookService {
+    private IBookRepository iBookRepository;
+    private BibliotecaMapper bibliotecaMapper;
 
-
-    @Override
-    public BookDTO findBookByISBN(String ISBN) {
-        return null;
+    public BookService(IBookRepository iBookRepository, BibliotecaMapper bibliotecaMapper) {
+        this.iBookRepository = iBookRepository;
+        this.bibliotecaMapper = bibliotecaMapper;
     }
 
+    /**
+     * metodo que consulta todos los libros prestados y sin prestar
+     *
+     * @return lista de BookDTO
+     */
     @Override
-    public List<BookDTO> findAllBooks(String ISBN) {
+    public List<BookDTO> findAllBooks() {
+        BookEntity tableBook = iBookRepository.findAllBooks();
         return null;
     }
 }

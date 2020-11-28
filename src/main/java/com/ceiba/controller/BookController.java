@@ -31,15 +31,9 @@ public class BookController {
     }
 
     @GetMapping(ConstantesUtils.GET_BOOKS)
-    public ResponseEntity<BookDTO> findBookByISBN(@PathVariable("id") String ISBN) {
-        System.out.println("TemplateApi :: findTemplateById :: searching template");
-        return ResponseEntity.status(HttpStatus.OK).body(iBookService.findBookByISBN(ISBN));
-    }
-
-    @GetMapping(ConstantesUtils.GET_BOOKS)
-    public ResponseEntity<List<BookDTO>> findAllBooks(@PathVariable("id") String id) {
-        System.out.println("TemplateApi :: findTemplateById :: searching template");
-        return ResponseEntity.status(HttpStatus.OK).body(iBookService.findAllBooks(id));
+    public ResponseEntity<List<BookDTO>> findAllBooks() {
+        System.out.println("PruebaBackendCeibaEquipo5 :: BookController :: findAllBooks :: searching Book");
+        return ResponseEntity.status(HttpStatus.OK).body(iBookService.findAllBooks());
     }
 
 }

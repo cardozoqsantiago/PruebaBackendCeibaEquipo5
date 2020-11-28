@@ -10,13 +10,16 @@ import lombok.ToString;
  *
  * @author Santiago Cardozo Q
  */
+
 @Data
 @ToString
 @Builder
 @AllArgsConstructor
-
 public class BookDTO {
 	
-	
-	
+    private Long id;
+    private String name;
+    private Long numberBooks;
+    private Long numberLoans;
+
 }
