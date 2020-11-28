@@ -1,12 +1,13 @@
-package com.ceiba.util;
+package com.ceiba.biblioteca.util;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
-import com.ceiba.DTO.BookDTO;
-import com.ceiba.DTO.LoanDTO;
-import com.ceiba.model.BookEntity;
-import com.ceiba.model.LoanEntity;
+import com.ceiba.biblioteca.dto.BookDTO;
+import com.ceiba.biblioteca.dto.LoanDTO;
+import com.ceiba.biblioteca.model.BookEntity;
+import com.ceiba.biblioteca.model.LoanEntity;
+
 import org.springframework.stereotype.Component;
 
 /**

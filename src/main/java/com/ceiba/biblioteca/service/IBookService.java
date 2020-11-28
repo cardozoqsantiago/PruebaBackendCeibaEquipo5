@@ -1,8 +1,8 @@
-package com.ceiba.service;
-
-import com.ceiba.DTO.BookDTO;
+package com.ceiba.biblioteca.service;
 
 import java.util.List;
+
+import com.ceiba.biblioteca.dto.BookDTO;
 
 /**
  * Interface para el negocio BookService
@@ -13,5 +13,13 @@ import java.util.List;
 public interface IBookService {
 
     List<BookDTO> findAllBooks();
+
+	/**
+	 * Metodo que permite crear un usuario
+	 * 
+	 * @param bookDTO
+	 * @return
+	 */
+	void createBook(BookDTO bookDTO);
 
 }

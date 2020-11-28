@@ -1,4 +1,4 @@
-package com.ceiba.DTO;
+package com.ceiba.biblioteca.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,5 +21,6 @@ public class BookDTO {
     private String name;
     private Long numberBooks;
     private Long numberLoans;
+    private String isbn;
 
 }

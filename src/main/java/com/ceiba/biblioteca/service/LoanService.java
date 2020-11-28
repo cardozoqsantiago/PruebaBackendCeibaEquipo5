@@ -1,4 +1,4 @@
-package com.ceiba.service;
+package com.ceiba.biblioteca.service;
 
 import org.springframework.stereotype.Service;
 

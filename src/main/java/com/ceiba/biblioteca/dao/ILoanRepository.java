@@ -1,7 +1,8 @@
-package com.ceiba.dao;
+package com.ceiba.biblioteca.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.ceiba.model.LoanEntity;
+
+import com.ceiba.biblioteca.model.LoanEntity;
 
 /**
  * Repositorio que soportara todas las querys realizadas

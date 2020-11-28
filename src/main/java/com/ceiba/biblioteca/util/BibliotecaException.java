@@ -1,4 +1,6 @@
-package com.ceiba.util;
+package com.ceiba.biblioteca.util;
+
+import lombok.Data;
 
 /**
  * Clase encargada de manejar las excepciones
@@ -6,6 +8,7 @@ package com.ceiba.util;
  * @author Santiago Cardozo Q
  *
  */
+@Data
 public class BibliotecaException extends Exception  {
 	
 	/**
@@ -26,25 +29,4 @@ public class BibliotecaException extends Exception  {
 		super(mensaje);
 		this.tipoError = tipoError;
 	}
-
-	/**
-	 * Getter para el campo tipoError.
-	 *
-	 * @return el valor de la propiedad tipoError.
-	 */
-	public String getTipoError() {
-		return tipoError;
-	}
-
-	/**
-	 * Setter para el campo tipoError..
-	 *
-	 * @param @param tipoError el valor de la propiedad tipoError a establecer.
-	 */
-	public void setTipoError(String tipoError) {
-		this.tipoError = tipoError;
-	}
-	
-		
-
 }

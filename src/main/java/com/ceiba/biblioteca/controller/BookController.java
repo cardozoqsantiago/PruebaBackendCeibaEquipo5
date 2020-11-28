@@ -1,13 +1,16 @@
-package com.ceiba.controller;
+package com.ceiba.biblioteca.controller;
 
 
-import com.ceiba.DTO.BookDTO;
-import com.ceiba.service.IBookService;
-import com.ceiba.util.ConstantesUtils;
+import com.ceiba.biblioteca.dto.BookDTO;
+import com.ceiba.biblioteca.service.IBookService;
+import com.ceiba.biblioteca.util.ConstantesUtils;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +38,22 @@ public class BookController {
         System.out.println("PruebaBackendCeibaEquipo5 :: BookController :: findAllBooks :: searching Book");
         return ResponseEntity.status(HttpStatus.OK).body(iBookService.findAllBooks());
     }
-
+    
+    /**
+     * Metodo que permite crear un libro
+     * 
+     * @param bookDTO
+     * @return
+     */
+    @PostMapping("/createBook")
+    public ResponseEntity<String> createBook(@RequestBody BookDTO bookDTO) {
+    	try {
+    		iBookService.createBook(bookDTO);	
+		} catch (Exception e) {
+			return new ResponseEntity<>(ConstantesUtils.ERROR_TECNICO + ": " +  ConstantesUtils.NO_CREO_LIBRO + " " +  e, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>(ConstantesUtils.EXITOSO + ": " +  ConstantesUtils.SE_CREO_LIBRO, HttpStatus.OK);
+    }
+    
+    
 }
