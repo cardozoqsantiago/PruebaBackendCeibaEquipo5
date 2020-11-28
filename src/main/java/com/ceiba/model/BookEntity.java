@@ -8,12 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * Modelo para la tabla Book
  * 
  * @author Santiago Cardozo Q
  *
  */
+@Data
 @Entity
 @Table(name = "Book")
 public class BookEntity {
@@ -24,6 +27,12 @@ public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	/**
+	 * Propiedad isbn
+	 */
+	@Column(name = "isbn", nullable = false)
+	private String isbn;
 	
 	/**
 	 * propiedad id

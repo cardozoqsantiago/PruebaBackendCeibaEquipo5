@@ -20,11 +20,9 @@ import java.util.List;
 @Component
 public class BookService implements IBookService {
     private IBookRepository iBookRepository;
-    private BibliotecaMapper bibliotecaMapper;
 
-    public BookService(IBookRepository iBookRepository, BibliotecaMapper bibliotecaMapper) {
+    public BookService(IBookRepository iBookRepository) {
         this.iBookRepository = iBookRepository;
-        this.bibliotecaMapper = bibliotecaMapper;
     }
 
     /**
@@ -37,4 +35,16 @@ public class BookService implements IBookService {
         BookEntity tableBook = iBookRepository.findAllBooks();
         return null;
     }
+    
+    /**
+     * Metodo que permite crear un usuario
+     * 
+     * @param bookDTO
+     * @return
+     */
+    public void createBook(BookDTO bookDTO) {
+    	iBookRepository.save(BibliotecaMapper.toBookEntity(bookDTO));
+    }
+    
+    
 }
