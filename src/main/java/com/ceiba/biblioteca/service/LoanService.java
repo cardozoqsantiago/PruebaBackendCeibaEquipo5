@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ceiba.biblioteca.dao.IBookRepository;
 import com.ceiba.biblioteca.dao.ILoanRepository;
 import com.ceiba.biblioteca.dto.LoanDTO;
+import com.ceiba.biblioteca.dto.ResponseLoanDTO;
 import com.ceiba.biblioteca.model.BookEntity;
 import com.ceiba.biblioteca.model.LoanEntity;
 import com.ceiba.biblioteca.util.ConstantesUtils;
@@ -34,31 +35,45 @@ public class LoanService implements ILoanService {
 	ILoanRepository iLoanRepository;
 	
 	@Transactional
-	public LoanEntity leanBook (LoanDTO request) throws Exception {
+	public ResponseLoanDTO leanBook (LoanDTO request) throws Exception {
+		ResponseLoanDTO response = new ResponseLoanDTO();
+		response.setEstadoProceso(true);
 		try {
+			
 			String isbnLocal="";
 			BookEntity book = iBookRepository.findByIsbn(request.getIdBook().getIsbn());
-			isbnLocal = book.getIsbn();
-			
+		
 			//validar que haya existencias
-			if (book == null)
-				throw new Exception ("El libro a prestar nmo existe.");
+			if (book == null) {
+				response.setMensajeRespuesta("El libro a prestar no existe.");
+				response.setEstadoProceso(false);
+				throw new Exception ("El libro a prestar no existe.");
+			}
+			else
+				isbnLocal = book.getIsbn();
 			//validar que sea palindromo
-			if (validarPalindromo(isbnLocal))
+			if (validarPalindromo(isbnLocal)) {
+				
+				response.setMensajeRespuesta("Los libros palíndromos solo se pueden utilizar en la biblioteca");
+				response.setEstadoProceso(false);
 				throw new Exception ("Los libros palíndromos solo se pueden utilizar en la biblioteca");
+			}
 			//validar que haya existencias
-			if (book.getNumberBooks()==0)
+			if (book.getNumberBooks()==0) {
+				response.setMensajeRespuesta("No existen libros disponibles.");
+				response.setEstadoProceso(false);
 				throw new Exception ("No existen libros disponibles.");
+			}
 		
 			//validar cantidad de digitos en el isbn
 			if (validarDigitosIsbn(isbnLocal)) {
-				if (request.getDiasPrestamo() > ConstantesUtils.VALOR_MAXIMO_DIG_ISBN) {
+				if (request.getDiasPrestamo() > ConstantesUtils.DIAS_MAXIMO_PRESTAMO) {
 					request.setDiasPrestamo(ConstantesUtils.DIAS_MAXIMO_PRESTAMO);
 				}
 			}
 			//Obtener la fecha del prestamo
 			Date fechaPrestamo = new Date();
-			fechaPrestamo = obtenerFechaFinal(request.getDiasPrestamo(), convertToDateViaSqlDate(request.getDate()));
+			fechaPrestamo = obtenerFechaFinal(request.getDiasPrestamo(), sumarRestarDiasFecha(convertToDateViaSqlDate(request.getDate()),-1l));
 			
 			//BookEntity book = new BookEntity();
 			book.setNumberBooks(book.getNumberBooks()-1);
@@ -70,13 +85,13 @@ public class LoanService implements ILoanService {
 			loan.setPersonName(request.getPersonName());
 			loan.setDate(request.getDate());
 			loan.setReturnDate(convertToLocalDateViaSqlDate(fechaPrestamo));
-	
-			return iLoanRepository.save(loan);	
+			response.setLoan(iLoanRepository.save(loan));
+			response.setMensajeRespuesta("Prestamo realizado con éxito.");	
 		}
 		catch(Exception e) {
 			System.out.println("Ocurio un error al hacer el prestamo.");
 		}
-		return null;
+		return response;
 	
 	}
 
@@ -143,7 +158,7 @@ public class LoanService implements ILoanService {
 				bError = true;
 			}
 		}	  
-		return bError;
+		return !bError;
 	}
 	
 	

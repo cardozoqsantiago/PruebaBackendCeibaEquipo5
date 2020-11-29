@@ -1,6 +1,7 @@
 package com.ceiba.biblioteca.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.biblioteca.dto.LoanDTO;
+import com.ceiba.biblioteca.dto.ResponseLoanDTO;
+import com.ceiba.biblioteca.model.BookEntity;
 import com.ceiba.biblioteca.model.LoanEntity;
 import com.ceiba.biblioteca.service.LoanService;
 import com.ceiba.biblioteca.util.ConstantesUtils;
@@ -29,15 +32,19 @@ import com.ceiba.biblioteca.util.ConstantesUtils;
 @RequestMapping(ConstantesUtils.BASE_URL_LOAN)
 @CrossOrigin(origins = "*", methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class LoanController {
-	
+	@Autowired 
 	LoanService loanService;
 	
 	@PostMapping("/generarprestamo")
-	public ResponseEntity<LoanEntity> leanBook(@RequestBody LoanDTO request) {
+	public ResponseEntity<ResponseLoanDTO> leanBook(@RequestBody LoanDTO request) {
 	    try {
-	        return new ResponseEntity<>( loanService.leanBook(request),HttpStatus.OK);
+	    	ResponseLoanDTO response = loanService.leanBook(request);
+	       // return new ResponseEntity<>(loan ,HttpStatus.OK);
+	        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
 	    } catch (Exception e) {
-	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    	System.out.println("Ocurio un error al hacer el prestamo. "+ e.toString());
+	    	return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	      
 	    }
 	}
 
