@@ -1,12 +1,11 @@
-package com.ceiba.dao;
+package com.ceiba.biblioteca.dao;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.ceiba.model.BookEntity;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
+import com.ceiba.biblioteca.model.BookEntity;
 
 /**
  * Repositorio que soportara todas las querys realizadas
@@ -17,8 +16,13 @@ import org.springframework.data.repository.query.Param;
  */
 public interface IBookRepository extends JpaRepository<BookEntity, Long> {
 
-    @Query("select n from BookEntity n")
-    BookEntity findAllBooks();
+ 
+	/**
+	 * Consulta los libros por Isbn
+	 * 
+	 * @param isnb
+	 * @return
+	 */
+    BookEntity findByIsbn(String isnb);
     
-	public BookEntity findByIsbn(String isbn);
 }

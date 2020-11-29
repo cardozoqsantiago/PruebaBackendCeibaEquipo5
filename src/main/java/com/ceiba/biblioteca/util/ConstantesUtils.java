@@ -1,4 +1,4 @@
-package com.ceiba.util;
+package com.ceiba.biblioteca.util;
 
 /**
  * Clase encargada se reclutar todas las constantes
@@ -23,13 +23,17 @@ public class ConstantesUtils {
      */
     public static final String GET_BOOKS = "/books";
     /**
+     * constante para eliminar libros
+     */
+    public static final String DELETE_BOOKS = "/book/remove/{isbn}";
+    /**
      * Constante para el no registro de un usuario
      */
-    public static final String NO_CREO_USUARIO = "No se creo el libro correctamente";
+    public static final String NO_CREO_LIBRO = "No se creo el libro correctamente";
     /**
      * Se creo el usuario correctamente
      */
-    public static final String SE_CREO_USUARIO = "Se creo el libro correctamente";
+    public static final String SE_CREO_LIBRO = "Se creo el libro correctamente";
     /**
      * Nombre del error tecnico
      */

@@ -1,4 +1,4 @@
-package com.ceiba.service;
+package com.ceiba.biblioteca.service;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ceiba.DTO.LoanDTO;
-import com.ceiba.dao.IBookRepository;
-import com.ceiba.dao.ILoanRepository;
-import com.ceiba.model.BookEntity;
-import com.ceiba.model.LoanEntity;
-import com.ceiba.util.ConstantesUtils;
+import com.ceiba.biblioteca.dao.IBookRepository;
+import com.ceiba.biblioteca.dao.ILoanRepository;
+import com.ceiba.biblioteca.dto.LoanDTO;
+import com.ceiba.biblioteca.model.BookEntity;
+import com.ceiba.biblioteca.model.LoanEntity;
+import com.ceiba.biblioteca.util.ConstantesUtils;
+
 
 /**
  * Servicio que maneja toda la logica de negocio 

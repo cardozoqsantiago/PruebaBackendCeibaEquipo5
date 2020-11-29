@@ -1,4 +1,4 @@
-package com.ceiba.service;
+package com.ceiba.biblioteca.service;
 
 /**
  * Interface para el negocio LoanService

@@ -1,4 +1,4 @@
-package com.ceiba.DTO;
+package com.ceiba.biblioteca.dto;
 
 import lombok.*;
 

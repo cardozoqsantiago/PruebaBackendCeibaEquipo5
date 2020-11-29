@@ -1,18 +1,20 @@
-package com.ceiba.controller;
+package com.ceiba.biblioteca.controller;
 
-import com.ceiba.DTO.LoanDTO;
-import com.ceiba.model.LoanEntity;
-import com.ceiba.service.LoanService;
-import com.ceiba.util.ConstantesUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ceiba.biblioteca.dto.LoanDTO;
+import com.ceiba.biblioteca.model.LoanEntity;
+import com.ceiba.biblioteca.service.LoanService;
+import com.ceiba.biblioteca.util.ConstantesUtils;
 
 /**
  * Controlador para la gestion de un
