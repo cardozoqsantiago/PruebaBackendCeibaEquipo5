@@ -25,7 +25,9 @@ public class ConstantesUtils {
     /**
      * constante para eliminar libros
      */
-    public static final String DELETE_BOOKS = "/book/remove/{isbn}";
+    public static final String DELETE_BOOKS = "/remove/{isbn}";
+    
+    public static final String CREATE_BOOKS = 	"/createBook";
     /**
      * Constante para el no registro de un usuario
      */
@@ -34,6 +36,18 @@ public class ConstantesUtils {
      * Se creo el usuario correctamente
      */
     public static final String SE_CREO_LIBRO = "Se creo el libro correctamente";
+    /**
+     * constante para eliminar libros
+     */
+    public static final String SE_BORRO_LIBRO = "El libro fue borrado";
+    /**
+     * constante para validar si un libro esta prestado
+     */
+    public static final String LIBRO_PRESTADO = "El libro esta prestado";
+    /**
+     * Constante para validar existencia del libro
+     */
+    public static final String LIBRO_NO_EXISTE = "El libro no existe";
     /**
      * Nombre del error tecnico
      */

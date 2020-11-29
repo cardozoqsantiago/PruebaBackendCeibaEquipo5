@@ -6,6 +6,7 @@ import com.ceiba.biblioteca.dao.ILoanRepository;
 import com.ceiba.biblioteca.dto.BookDTO;
 import com.ceiba.biblioteca.model.BookEntity;
 import com.ceiba.biblioteca.util.BibliotecaMapper;
+import com.ceiba.biblioteca.util.ConstantesUtils;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -88,18 +89,18 @@ public class BookService implements IBookService {
 				if (book.getNumberBooks() > 1) {
 					book.setNumberBooks(book.getNumberBooks() - 1);
 					iBookRepository.save(book);
-					response = "el libro fue borrado";
+					response = ConstantesUtils.SE_BORRO_LIBRO;
 				} else if (book.getNumberBooks() == 1) {
 					iBookRepository.delete(book);
-					response = "el libro fue borrado";
+					response = ConstantesUtils.SE_BORRO_LIBRO;
 
 				} else if (book.getNumberLoans() > 0 && book.getNumberBooks() == 0) {
-					response = "el libro esta prestado";
+					response = ConstantesUtils.LIBRO_PRESTADO;
 
 				}
 				return response;
 			}
-			return "el libro no existe";
+			return ConstantesUtils.LIBRO_NO_EXISTE;
 		} catch (Exception e) {
 			throw new SystemException();
 		}
@@ -118,7 +119,6 @@ public class BookService implements IBookService {
 			List<BookDTO> responseList = new ArrayList<>();
 			for (BookDTO book : listBooks) {
 				if (book.getNumberLoans() > 0) {
-
 					book.setLoan(BibliotecaMapper.toListLoan(iLoanRepository.findAllLoanByIdBook(book.getId())));
 					responseList.add(book);
 				} else {

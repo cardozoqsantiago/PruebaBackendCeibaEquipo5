@@ -7,10 +7,8 @@ import com.ceiba.biblioteca.dto.BookDTO;
 import com.ceiba.biblioteca.dto.LoanDTO;
 import com.ceiba.biblioteca.model.BookEntity;
 import com.ceiba.biblioteca.model.LoanEntity;
-
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
-
 import javax.transaction.SystemException;
 import java.util.ArrayList;
 import java.util.List;
