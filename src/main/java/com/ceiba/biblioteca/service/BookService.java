@@ -58,7 +58,7 @@ public class BookService implements IBookService {
     public void createBook(BookDTO bookDTO) {
     	BookEntity bookEntity = validateExistenceBook(bookDTO.getIsbn());
     	if(bookEntity.getId() == null) {
-    		bookDTO.setNumberBooks(1L);
+    		bookDTO.setNumberBooks(bookDTO.getNumberBooks());
     		bookDTO.setNumberLoans(0L);
     		iBookRepository.save(BibliotecaMapper.toBookEntity(bookDTO));
     	}

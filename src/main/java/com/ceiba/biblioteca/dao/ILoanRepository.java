@@ -22,6 +22,6 @@ public interface ILoanRepository extends JpaRepository<LoanEntity, Long> {
 	 * @param idBook
 	 * @return
 	 */
-    @Query("select n from LoanEntity n where n.idBook = :idBook ")
+    @Query("select n from LoanEntity n where n.idBook.id = :idBook ")
     List<LoanEntity> findAllLoanByIdBook(Long idBook);
 }
