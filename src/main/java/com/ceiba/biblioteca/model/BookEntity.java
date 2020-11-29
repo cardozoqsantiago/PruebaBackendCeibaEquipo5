@@ -35,7 +35,7 @@ public class BookEntity {
 	private String isbn;
 	
 	/**
-	 * propiedad id
+	 * propiedad name
 	 */
 	@Column(name = "name", nullable = false)
 	private String name;

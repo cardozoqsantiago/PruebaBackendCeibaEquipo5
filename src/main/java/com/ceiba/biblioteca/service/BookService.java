@@ -26,10 +26,23 @@ import javax.transaction.SystemException;
 @Component
 public class BookService implements IBookService {
     
+	/**
+	 * Inyeccion del repositorio IBookRepository a traves
+	 * del atributo iBookRepository
+	 */
 	private IBookRepository iBookRepository;
-    
+	/**
+	 * Inyeccion del repositorio ILoanRepository a traves
+	 * del atributo iLoanRepository
+	 */
 	private ILoanRepository iLoanRepository;
 
+	/**
+	 * Constructor con las propiedades
+	 * 
+	 * @param iBookRepository el valor de la propiedad
+	 * @param iLoanRepository el valor de la propiedad
+	 */
     public BookService(IBookRepository iBookRepository, ILoanRepository iLoanRepository) {
         this.iBookRepository = iBookRepository;
         this.iLoanRepository = iLoanRepository;

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.SystemException;
 import java.util.List;
 
-
 /**
  * Controlador para la gestion de un
  * libro
@@ -28,8 +27,17 @@ import java.util.List;
 @RestController
 @RequestMapping(ConstantesUtils.BASE_URL_BOOK)
 public class BookController {
+	/**
+	 * Instancia de la interfaz del servicio
+	 * IBookService
+	 */
     private final IBookService iBookService;
 
+    /**
+     * Constructor con las propiedades
+     * 
+     * @param iBookService el valor de la propiedad
+     */
     public BookController(IBookService iBookService) {
         this.iBookService = iBookService;
     }

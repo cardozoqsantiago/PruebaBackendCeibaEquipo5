@@ -26,8 +26,18 @@ public class ConstantesUtils {
      * constante para eliminar libros
      */
     public static final String DELETE_BOOKS = "/remove/{isbn}";
-    
+    /**
+     * Constante para la creacion de un libro
+     */
     public static final String CREATE_BOOKS = 	"/createBook";
+    /**
+     * Constante para la generacion de un prestamo
+     */
+    public static final String GENERAR_PRESTAMO = "/generarPrestamo";
+    /**
+     * Constante para el error al hacer prestamo
+     */
+    public static final String ERROR_PRESTAMO = "Ocurio un error al hacer el prestamo. ";
     /**
      * Constante para el no registro de un usuario
      */

@@ -15,6 +15,13 @@ import java.util.List;
  */
 public interface ILoanRepository extends JpaRepository<LoanEntity, Long> {
 	
+	/**
+	 * Consulta los registros de un prestamo 
+	 * segun el id del libro
+	 * 
+	 * @param idBook
+	 * @return
+	 */
     @Query("select n from LoanEntity n where n.idBook = :idBook ")
     List<LoanEntity> findAllLoanByIdBook(Long idBook);
 }

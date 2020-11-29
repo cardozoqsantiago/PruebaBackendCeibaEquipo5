@@ -12,7 +12,6 @@ import com.ceiba.biblioteca.model.BookEntity;
  */
 public interface IBookRepository extends JpaRepository<BookEntity, Long> {
 
- 
 	/**
 	 * Consulta los libros por Isbn
 	 * 

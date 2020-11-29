@@ -1,10 +1,7 @@
 package com.ceiba.biblioteca.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-
 import java.util.List;
 
 /**
@@ -12,16 +9,33 @@ import java.util.List;
  *
  * @author Santiago Cardozo Q
  */
-
 @Data
 @ToString
 public class BookDTO {
 	
+	/**
+	 * propiedad id
+	 */
 	private Long id;
+	/**
+	 * propiedad isbn
+	 */
     private String isbn;
+    /**
+	 * propiedad name
+	 */
     private String name;
+    /**
+	 * propiedad numberBooks
+	 */
     private Long numberBooks;
+    /**
+	 * propiedad numberLoans
+	 */
     private Long numberLoans;
+    /**
+	 * propiedad Loan
+	 */
     private List<LoanDTO> Loan;
 
 

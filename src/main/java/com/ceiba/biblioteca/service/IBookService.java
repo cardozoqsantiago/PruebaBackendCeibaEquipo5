@@ -13,8 +13,20 @@ import com.ceiba.biblioteca.dto.BookDTO;
  */
 public interface IBookService {
 
+	/**
+	 * metodo que consulta todos los libros prestados y sin prestar
+	 *
+	 * @return list BookDTO
+	 * @throws SystemException
+	 */
     List<BookDTO> findAllBooks() throws SystemException;
 
+    /**
+	 * metodo que consulta todos los libros prestados y sin prestar
+	 *
+	 * @return list BookDTO
+	 * @throws SystemException
+	 */
     String deleteBook(String isbn) throws SystemException;
 
 	/**

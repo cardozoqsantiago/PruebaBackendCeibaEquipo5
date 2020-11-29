@@ -71,7 +71,14 @@ public class BibliotecaMapper {
         return modelMapper.map(bookDTO, BookEntity.class);
     }
 
-
+    /**
+     * Metodo que mapea una listaEntity a una
+     * listaDTO
+     * 
+     * @param loanEntities
+     * @return
+     * @throws SystemException
+     */
     public static List<LoanDTO> toListLoan(List<LoanEntity> loanEntities) throws SystemException {
         List<LoanDTO> response = new ArrayList<>();
         if (!ObjectUtils.isEmpty(loanEntities)) {
