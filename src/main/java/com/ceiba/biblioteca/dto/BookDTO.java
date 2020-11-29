@@ -15,11 +15,9 @@ import java.util.List;
 
 @Data
 @ToString
-@Builder
-@AllArgsConstructor
 public class BookDTO {
-
-    private Long id;
+	
+	private Long id;
     private String isbn;
     private String name;
     private Long numberBooks;

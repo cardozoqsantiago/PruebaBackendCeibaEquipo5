@@ -4,9 +4,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @ToString
 public class LoanDTO {

@@ -52,7 +52,7 @@ public class BookController {
      * @param bookDTO
      * @return
      */
-    @PostMapping("/createBook")
+    @PostMapping(ConstantesUtils.CREATE_BOOKS)
     public ResponseEntity<String> createBook(@RequestBody BookDTO bookDTO) {
     	try {
     		iBookService.createBook(bookDTO);	
